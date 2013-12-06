@@ -42,9 +42,10 @@ include_recipe "ingenerator-php::default"
 The default recipe executes the following steps:
 
 | Recipe      | Action                                                                                              |
-| install-php | Installs php and any additional modules                                                             |
+|-------------|-----------------------------------------------------------------------------------------------------|
+| install_php | Installs php and any additional modules                                                             |
+| share_inis  | Configures php to share ini files between apache, cgi and cli                                       |
 | composer    | Installs and updates composer globally for all users, and creates a global writeable composer cache |
-| share-inis  | Configures php to share ini files between apache, cgi and cli                                       |
 
 To customise behaviour, include any or all of these recipes directly rather than relying on the default.
 
