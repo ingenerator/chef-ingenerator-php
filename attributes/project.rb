@@ -1,11 +1,12 @@
-# Installs the default PHP configuration, with all required packages, ini files,
-# and a global composer executable.
 #
-# Author::  Andrew Coulton (<andrew@ingenerator.com>)
+# These attributes, which may be set in more than one cookbook, are intended to be set
+# once at project level for a given role and control the behaviour of multiple recipes.
+# 
+# Author:: Andrew Coulton(<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-php
-# Recipe:: default
+# Attribute:: project
 #
-# Copyright 2012-13, inGenerator Ltd
+# Copyright 2012-13, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,11 +21,4 @@
 # limitations under the License.
 #
 
-include_recipe "ingenerator-php::install_php"
-include_recipe "ingenerator-php::share_inis"
-
-if node['project']['install_dev_tools']
-  include_recipe "ingenerator-php::dev_tools"
-end
-
-include_recipe "ingenerator-php::composer"
+default['project']['install_dev_tools'] = false

@@ -1,11 +1,13 @@
-# Installs the default PHP configuration, with all required packages, ini files,
-# and a global composer executable.
+#!/bin/bash
+# 
+# Wrapper script for running any CLI command with the environment variables required to start an
+# xdebug debugger session for the lifetime of the current script execution. This script is written
+# out by chef with the appropriate idekey and serverName configuration.
 #
-# Author::  Andrew Coulton (<andrew@ingenerator.com>)
-# Cookbook Name:: ingenerator-php
-# Recipe:: default
+# Usage: xdebug {script_name} {script_args}
 #
-# Copyright 2012-13, inGenerator Ltd
+# Author: Andrew Coulton <andrew@ingenerator.com>
+# Copyright: 2012-13 inGenerator Ltd
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +20,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-include_recipe "ingenerator-php::install_php"
-include_recipe "ingenerator-php::share_inis"
-
-if node['project']['install_dev_tools']
-  include_recipe "ingenerator-php::dev_tools"
-end
-
-include_recipe "ingenerator-php::composer"
+# Catch incorrect usage
+echo "Args:"
+for var in "$@"
+do
+  echo "$var"
+done
+echo ""
+env

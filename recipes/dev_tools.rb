@@ -1,9 +1,9 @@
-# Installs the default PHP configuration, with all required packages, ini files,
-# and a global composer executable.
+#
+# Install standard PHP development tools
 #
 # Author::  Andrew Coulton (<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-php
-# Recipe:: default
+# Recipe:: install_php
 #
 # Copyright 2012-13, inGenerator Ltd
 #
@@ -20,11 +20,23 @@
 # limitations under the License.
 #
 
-include_recipe "ingenerator-php::install_php"
-include_recipe "ingenerator-php::share_inis"
+package 'php5-xdebug'
 
-if node['project']['install_dev_tools']
-  include_recipe "ingenerator-php::dev_tools"
+# Configure xdebug settings
+node.default['php']['directives'] = {
+
+}
+node.default['php']['xdebug'] = {
+  'idekey'          => 'PHPSTORM',
+  'ide_server_name' => node['hostname']
+}
+
+# Install the xdebug CLI wrapper script
+template '/usr/local/bin/xdebug' do
+  source    'xdebug.erb'
+  mode      0755
+  variables ({
+    :idekey      => node['php']['xdebug']['idekey'],
+    :serverName  => node['php']['xdebug']['ide_server_name']
+  })
 end
-
-include_recipe "ingenerator-php::composer"
