@@ -1,4 +1,7 @@
 #
+# Replace package-installed php.ini files for CGI/CLI/etc environments with links to
+# the central php.ini managed by this cookbook.
+#
 # Author::  Andrew Coulton (<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-php
 # Recipe:: install_php
@@ -18,3 +21,16 @@
 # limitations under the License.
 #
 
+node['php']['share_env_inis'].each do |ini_path, should_share|
+  next unless should_share
+
+  file ini_path.dup do
+    action :delete
+    not_if { File.symlink?(ini_path) }
+  end
+
+  link ini_path do
+    to node['php']['conf_dir']+'/php.ini'
+    not_if { File.symlink?(ini_path) }
+  end
+end

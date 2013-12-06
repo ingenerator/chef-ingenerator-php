@@ -55,3 +55,10 @@ default['php']['session_dir'] = {
   'user'  => 'www-data',
   'group' => 'www-data'
 }
+
+# List of php.ini files that should be removed by the share_inis recipe and replaced with links
+# to the standard php.ini location
+default['php']['share_env_inis'] = {
+  '/etc/php5/cli/php.ini' => true,
+  '/etc/php5/cgi/php.ini' => true
+}
