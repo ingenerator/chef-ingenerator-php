@@ -19,7 +19,36 @@
 #
 
 default['php']['directives'] = {
-  'session.save_path' => '/var/lib/php/session'
+  # Core
+  'allow_call_time_pass_reference'       => 0,
+  'disable_functions'                    => '',
+  'enable_dl'                            => 0,
+  'error_reporting'                      => 'E_ALL',
+  'expose_php'                           => 0,
+  'html_errors'                          => 1,
+  'mail.add_x_header'                    => 0,
+  'memory_limit'                         => '256M',
+  'post_max_size'                        => '30M',
+  'serialize_precision'                  => 100,
+  'upload_max_filesize'                  => '30M',
+  'variables_order'                      => 'EGPCS',
+
+  # Namespaced core
+  'date.timezone'                        => 'Europe/London',
+  'session.bug_compat_warn'              => 1,
+  'session.gc_max_lifetime'              => 3600,
+  'session.save_path'                    => '/var/lib/php/session',
+
+  # Modules
+  'apc.canonicalize'                     => 0,
+  'apc.mmap_files_mask'                  => '/tmp/apc.94MX1m',
+  'apc.num_files_hint'                   => 7500,
+  'apc.shm_size'                         => '256M',
+  'apc.stat'                             => 0,
+  'apc.ttl'                              => 7200,
+  'apc.user_ttl'                         => 7200,
+
+  'pdo_mysql.default_socket'             => '/var/run/mysqld/mysqld.sock',
 }
 
 default['php']['session_dir'] = {
