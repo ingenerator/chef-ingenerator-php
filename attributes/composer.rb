@@ -1,13 +1,9 @@
 #
-# Install composer globally and set up a shared global cache path - by default
-# in /var/composer/cache. Note that your composer.json needs to be set to use
-# this path separately.
-#
-# Author::  Andrew Coulton (<andrew@ingenerator.com>)
+# Author:: Andrew Coulton(<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-php
-# Recipe:: install_php
+# Attribute:: php_config
 #
-# Copyright 2012-13, inGenerator Ltd
+# Copyright 2012-13, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,13 +18,8 @@
 # limitations under the License.
 #
 
-composer node['composer']['install_path'] do
-  action [:install, :update]
-end
-
-directory node['composer']['global_cache']['path'] do
-  recursive true
-  user      node['composer']['global_cache']['user']
-  group     node['composer']['global_cache']['group']
-  mode      0777
-end
+default['composer']['global_cache'] = {
+  'path'  => '/var/composer/cache',
+  'user'  => 'root',
+  'group' => 'root',
+}
