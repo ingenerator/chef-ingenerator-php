@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 describe 'ingenerator-php::composer' do
-#  let (:chef_run) do
-#    ChefSpec::Runner.new do |node|
-#      node.set['php']['share_env_inis']['/etc/php5/cgi/php.ini'] = false
-#      node.set['php']['share_env_inis']['/etc/php5/apache2/php.ini'] = true
-#    end.converge(described_recipe)
-#  end
   let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
   
   it "installs composer as a global binary" do
