@@ -24,7 +24,7 @@
 node['php']['share_env_inis'].each do |ini_path, should_share|
   next unless should_share
 
-  file ini_path.dup do
+  file ini_path do
     action :delete
     not_if { File.symlink?(ini_path) }
   end
