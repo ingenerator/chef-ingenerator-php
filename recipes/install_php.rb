@@ -1,4 +1,6 @@
 #
+# Installs PHP with standard configuration
+#
 # Author::  Andrew Coulton (<andrew@ingenerator.com>)
 # Cookbook Name:: ingenerator-php
 # Recipe:: install_php
@@ -18,3 +20,16 @@
 # limitations under the License.
 #
 
+# Chef's community cookbook only manages one php.ini file - force use of a common file
+# which can be shared between cgi, cli and other environments with symlinks
+node.override['php']['conf_dir'] = '/etc/php5'
+
+include_recipe "php"
+
+directory node['php']['directives']['session.save_path'] do
+  action    :create
+  recursive true
+  user      node['php']['session_dir']['user']
+  group     node['php']['session_dir']['group']
+  mode      0700
+end
