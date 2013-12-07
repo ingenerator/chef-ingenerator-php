@@ -23,13 +23,8 @@
 package 'php5-xdebug'
 
 # Configure xdebug settings
-node.default['php']['directives'] = {
-
-}
-node.default['php']['xdebug'] = {
-  'idekey'          => 'PHPSTORM',
-  'ide_server_name' => node['hostname']
-}
+node.default['php']['xdebug']['idekey']          = 'PHPSTORM'
+node.default['php']['xdebug']['ide_server_name'] = node['hostname']
 
 # Install the xdebug CLI wrapper script
 template '/usr/local/bin/xdebug' do
