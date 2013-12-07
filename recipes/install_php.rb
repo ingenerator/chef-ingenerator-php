@@ -26,6 +26,11 @@ node.override['php']['conf_dir'] = '/etc/php5'
 
 include_recipe "php"
 
+node['php']['module_packages'].each do |package_name, do_install|
+  next unless do_install
+  package package_name
+end
+
 directory node['php']['directives']['session.save_path'] do
   action    :create
   recursive true

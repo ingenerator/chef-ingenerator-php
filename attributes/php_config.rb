@@ -18,14 +18,13 @@
 # limitations under the License.
 #
 
-# These module packages will be installed by the php::package recipe from the community cookbook
-# and should include the most common defaults that we always use. Other packages can be added
-# in your application cookbooks.
+# These module packages will be installed during the install_php recipe and should include the
+# most common defaults that we always use. Other packages can be added in your application cookbooks.
 # Note that the ingenerator-php::dev-tools recipe installs the xdebug package separately
-default['php']['packages'] = [
-  'php-apc',
-  'php5-curl'
-]
+default['php']['module_packages'] = {
+  'php-apc'     => true,
+  'php5-curl'   => true,
+}
 
 default['php']['directives'] = {
   # Core

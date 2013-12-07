@@ -40,14 +40,29 @@ describe 'ingenerator-php::install_php' do
     end
   end
 
-  # Note, packages are installed by the community recipe, our cookbook just adds packages to the list
-  # Spec here to ensure that any change to the community recipe package installation is caught
   it "installs the php-apc module from package" do
     chef_run.should install_package "php-apc"
   end
 
   it "installs the php5-curl module from package" do
     chef_run.should install_package "php5-curl"
+  end
+
+  context "with optional modules in node attributes" do
+      let (:chef_run) do
+        ChefSpec::Runner.new do |node|
+          node.set['php']['module_packages']['php-gd'] = true
+          node.set['php']['module_packages']['php-apc'] = false
+        end.converge(described_recipe)
+      end
+
+      it "installs packages for required modules" do
+        chef_run.should install_package 'php-gd'
+      end
+
+      it "does not install packages for modules that are disabled" do
+        chef_run.should_not install_package 'php-apc'
+      end
   end
 
 end
