@@ -24,7 +24,7 @@
 # which can be shared between cgi, cli and other environments with symlinks
 node.override['php']['conf_dir'] = '/etc/php5'
 
-include_recipe "php"
+include_recipe "php::package"
 
 node['php']['module_packages'].each do |package_name, do_install|
   next unless do_install

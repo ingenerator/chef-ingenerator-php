@@ -3,8 +3,17 @@ require 'spec_helper'
 describe 'ingenerator-php::install_php' do
   let (:chef_run) { ChefSpec::Runner.new.converge 'ingenerator-php::install_php' }
 
-  it "installs php with the community cookbook recipe" do
-    chef_run.should include_recipe "php::default"
+  it "installs php from package with the community cookbook recipe" do
+    chef_run.should include_recipe "php::package"
+  end
+
+  it "does not update pear.php.net" do
+    # these are slow and are not a required part of installing php especially as we now use composer
+    chef_run.should_not ChefSpec::Matchers::ResourceMatcher.new(:php_pear_channel, :update, 'pear.php.net')
+  end
+
+  it "does not update pecl.php.net" do
+    chef_run.should_not ChefSpec::Matchers::ResourceMatcher.new(:php_pear_channel, :update, 'pecl.php.net')
   end
 
   it "writes a common php.ini in /etc/php5/php.ini" do
