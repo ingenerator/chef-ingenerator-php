@@ -23,6 +23,7 @@
 
 node['php']['share_env_inis'].each do |ini_path, should_share|
   next unless should_share
+  ini_path = ini_path.dup
 
   file ini_path do
     action :delete
