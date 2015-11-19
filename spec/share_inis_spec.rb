@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'ingenerator-php::share_inis' do
   let (:chef_run) do
-    ChefSpec::Runner.new do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.set['php']['share_env_inis']['/etc/php5/cgi/php.ini'] = false
       node.set['php']['share_env_inis']['/etc/php5/apache2/php.ini'] = true
     end.converge(described_recipe)
@@ -53,14 +53,14 @@ describe 'ingenerator-php::share_inis' do
   end
 
   context "with default configuration" do
-    let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+    let (:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
     it "shares configuration for CLI" do
-      chef_run.node['php']['share_env_inis']['/etc/php5/cli/php.ini'].should be_true
+      chef_run.node['php']['share_env_inis']['/etc/php5/cli/php.ini'].should be true
     end
 
     it "shares configuration for CGI" do
-      chef_run.node['php']['share_env_inis']['/etc/php5/cgi/php.ini'].should be_true
+      chef_run.node['php']['share_env_inis']['/etc/php5/cgi/php.ini'].should be true
     end
 
     it "does not contain configuration for apache" do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-php::dev_tools' do
-  let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  let (:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   it "installs xdebug as a package" do
     chef_run.should install_package('php5-xdebug')
@@ -9,7 +9,7 @@ describe 'ingenerator-php::dev_tools' do
 
   context "with configured CLI debugging options" do
     let (:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['php']['xdebug']['idekey'] = 'FOO'
         node.set['php']['xdebug']['ide_server_name'] = 'foo_server'
       end.converge(described_recipe)

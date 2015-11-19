@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-php::install_php' do
-  let (:chef_run) { ChefSpec::Runner.new.converge 'ingenerator-php::install_php' }
+  let (:chef_run) { ChefSpec::SoloRunner.new.converge 'ingenerator-php::install_php' }
 
   it "installs php from package with the community cookbook recipe" do
     chef_run.should include_recipe "php::package"
@@ -29,7 +29,7 @@ describe 'ingenerator-php::install_php' do
 
   context "when session.save_path is provided" do
     let (:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['php']['directives']['session.save_path'] = '/tmp/foo/sessions'
         node.set['php']['session_dir']['user']  = 'foo-user'
         node.set['php']['session_dir']['group'] = 'bar-group'
@@ -59,7 +59,7 @@ describe 'ingenerator-php::install_php' do
 
   context "with optional modules in node attributes" do
       let (:chef_run) do
-        ChefSpec::Runner.new do |node|
+        ChefSpec::SoloRunner.new do |node|
           node.set['php']['module_packages']['php-gd'] = true
           node.set['php']['module_packages']['php-apc'] = false
         end.converge(described_recipe)

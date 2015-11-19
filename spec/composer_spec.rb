@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ingenerator-php::composer' do
-  let (:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
+  let (:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
   
   it "installs composer as a global binary" do
     chef_run.should ChefSpec::Matchers::ResourceMatcher.new(:composer, :install, chef_run.node['composer']['install_path'])
