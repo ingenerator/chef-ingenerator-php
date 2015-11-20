@@ -20,7 +20,16 @@
 # limitations under the License.
 #
 
-package 'php5-xdebug'
+# Install the latest version of xdebug if required
+# @todo: could we skip the pecl update if we already have the right xdebug version?
+php_pear_channel 'pecl.php.net' do
+  action :update
+end
+
+php_pear 'xdebug' do
+  action  :upgrade
+  version node['php']['xdebug']['version']
+end
 
 # Configure xdebug settings
 node.default['php']['xdebug']['idekey']          = 'PHPSTORM'
