@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem 'berkshelf',  '~> 3.0'
 gem 'ohai',       '~> 7.0'
 gem 'chefspec',   '4.3.0'
+gem 'chef-sugar'
 gem 'foodcritic', '~> 3.0'
 
 # All these things are required to make sure it works

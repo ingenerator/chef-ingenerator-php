@@ -10,6 +10,7 @@ version '0.1.0'
   supports os
 end
 
+depends 'chef-sugar', '>=1.2.6'
 depends 'composer'
 # 1.7.0 introduces a breaking change regarding the quoting of attribute values - prevent updating
 # past 1.6.x until we have implemented some wrapping/warning and/or introduced a breaking
