@@ -15,4 +15,4 @@ depends 'composer'
 # 1.7.0 introduces a breaking change regarding the quoting of attribute values - prevent updating
 # past 1.6.x until we have implemented some wrapping/warning and/or introduced a breaking
 # version of this cookbook to prevent unexpected production php config changes
-depends 'php', '<=1.7.0'
+depends 'php', '<1.7.0'
