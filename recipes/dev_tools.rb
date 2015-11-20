@@ -20,7 +20,24 @@
 # limitations under the License.
 #
 
-package 'php5-xdebug'
+include_recipe 'chef-sugar::default'
+if vagrant?
+  node.default['php']['directives']['xdebug.remote_enable'] = 1
+  # assign default vagrant host IP for our vagrant IP range
+  node.default['php']['directives']['xdebug.remote_host']   = '10.87.23.1'
+  node.default['php']['directives']['xdebug.remote_log']    = '/tmp/xdebug_remote.log'
+end
+
+# Install the latest version of xdebug if required
+# @todo: could we skip the pecl update if we already have the right xdebug version?
+php_pear_channel 'pecl.php.net' do
+  action :update
+end
+
+php_pear 'xdebug' do
+  action  :upgrade
+  version node['php']['xdebug']['version']
+end
 
 # Configure xdebug settings
 node.default['php']['xdebug']['idekey']          = 'PHPSTORM'
