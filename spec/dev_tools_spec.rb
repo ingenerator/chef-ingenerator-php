@@ -19,7 +19,7 @@ describe 'ingenerator-php::dev_tools' do
     end
 
     it "installs specified xdebug version from pecl" do
-      expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(:php_pear, :upgrade, 'xdebug').with(
+      expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(:php_pear, :install, 'xdebug').with(
         version:  '2.3.3',
       )
     end

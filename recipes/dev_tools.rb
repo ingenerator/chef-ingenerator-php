@@ -35,7 +35,7 @@ php_pear_channel 'pecl.php.net' do
 end
 
 php_pear 'xdebug' do
-  action  :upgrade
+  action  :install
   version node['php']['xdebug']['version']
 end
 
