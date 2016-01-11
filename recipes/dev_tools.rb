@@ -29,15 +29,30 @@ if vagrant?
 end
 
 # Install the latest version of xdebug if required
-# @todo: could we skip the pecl update if we already have the right xdebug version?
-php_pear_channel 'pecl.php.net' do
-  action :update
+bash 'install latest xdebug' do
+  code <<-EOH
+    set -o nounset
+    set -o errexit
+    EXISTING_VER=`php -r "print phpversion('xdebug');"`
+    if [ "$EXISTING_VER" = "$XDEBUG_TARGET_VER" ]; then
+      echo "Xdebug $EXISTING_VER already installed"
+      exit
+    fi
+    pecl channel-update pecl.php.net
+    echo "Installing Xdebug $XDEBUG_TARGET_VER"
+    pecl install "xdebug-$XDEBUG_TARGET_VER"
+  EOH
+  environment "XDEBUG_TARGET_VER" => node['php']['xdebug']['version']
 end
 
-php_pear 'xdebug' do
-  action  :install
-  version node['php']['xdebug']['version']
+file "#{node['php']['ext_conf_dir']}/xdebug.ini" do
+  content <<-EOH
+    ; configuration for php xdebug module
+    zend_extension=xdebug.so
+  EOH
 end
+
+execute '/usr/sbin/php5enmod xdebug'
 
 # Configure xdebug settings
 node.default['php']['xdebug']['idekey']          = 'PHPSTORM'
