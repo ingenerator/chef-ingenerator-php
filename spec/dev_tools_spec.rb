@@ -8,20 +8,27 @@ describe 'ingenerator-php::dev_tools' do
   end
 
   context "to install latest xdebug" do
-	let (:chef_run) do
-	  ChefSpec::SoloRunner.new do |node|
-		node.set['php']['xdebug']['version'] = '2.3.3'
-	  end.converge(described_recipe)
-	end
-
-    it "updates the pecl pear channel" do
-      expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(:php_pear_channel, :update, 'pecl.php.net')
+    let (:chef_run) do
+      ChefSpec::SoloRunner.new do |node|
+        node.set['php']['xdebug']['version'] = '2.3.3'
+        node.set['php']['ext_conf_dir']      = '/etc/php-extensions'
+      end.converge(described_recipe)
     end
 
-    it "installs specified xdebug version from pecl" do
-      expect(chef_run).to ChefSpec::Matchers::ResourceMatcher.new(:php_pear, :install, 'xdebug').with(
-        version:  '2.3.3',
+    it 'runs a bash script to install expected version' do
+      expect(chef_run).to run_bash('install latest xdebug').with( 
+        environment: { 'XDEBUG_TARGET_VER' => '2.3.3' }
       )
+    end
+
+    it 'provisions xdebug module ini file' do
+      expect(chef_run).to create_file('/etc/php-extensions/xdebug.ini').with(
+        content: /zend_extension=xdebug.so/
+      )
+    end
+
+    it 'enables the xdebug module' do
+      expect(chef_run).to run_execute('/usr/sbin/php5enmod xdebug')
     end
   end
 
