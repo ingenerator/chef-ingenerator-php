@@ -6,8 +6,8 @@ inGenerator Standard PHP cookbook
 
 Requirements
 ------------
-- Chef 11 or higher
-- **Ruby 1.9.3 or higher**
+- Chef 12.13 or higher
+- **Ruby 2.3 or higher**
 
 Installation
 ------------
@@ -17,7 +17,7 @@ We recommend adding to your `Berksfile` and using [Berkshelf](http://berkshelf.c
 cookbook 'ingenerator-php', git: 'git://github.com/ingenerator/chef-ingenerator-php', branch: 'master'
 ```
 
-Have your main project cookbook *depend* on ingenerator-php by editing the `metadata.rb` for your cookbook. 
+Have your main project cookbook *depend* on ingenerator-php by editing the `metadata.rb` for your cookbook.
 
 ```ruby
 # metadata.rb
@@ -52,8 +52,8 @@ To customise behaviour, include any or all of these recipes directly rather than
 Attributes
 ----------
 
-The cookbook defines a number of attributes for php.ini settings that we set differently to 
-the Ubuntu package defaults. See [the attributes files](attributes/) for details. You can 
+The cookbook defines a number of attributes for php.ini settings that we set differently to
+the Ubuntu package defaults. See [the attributes files](attributes/) for details. You can
 override these or add further directives in your own cookbooks or roles.
 
 ### Testing
