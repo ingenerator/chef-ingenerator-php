@@ -45,6 +45,7 @@ else
 end
 default['php']['directives']['opcache.memory_consumption'] = '128M'
 default['php']['directives']['opcache.max_accelerated_files'] = 7963
+## NB: configure opcache.file_cache_fallback when we go to php7
 
 # APC caching (for user caching, not opcodes)
 default['php']['directives']['apc.shm_size'] = '256M'
