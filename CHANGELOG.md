@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 1.0.0 (2017-02-24)
+
 * Add `composer_dependencies` resource to provision dependencies, by default
   optimising the autoloader and enabling APCU autoloader unless in local dev.
   This resource needs to be triggered manually in your own code. It DOES NOT
