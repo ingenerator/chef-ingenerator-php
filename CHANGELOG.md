@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Add `composer_dependencies` resource to provision dependencies, by default
+  optimising the autoloader and enabling APCU autoloader unless in local dev.
+  This resource needs to be triggered manually in your own code. It DOES NOT
+  manually set the composer home directory any more.
+* [BREAKING] Drop dependency on zircote/chef-composer and provide an updated
+  `composer_binary` resource for installing composer on a node using the
+  default composer-setup script now provided by composer. Will now throw an
+  exception if the legacy `composer[install_path]` attribute is still defined.
 * [BREAKING] Always display errors in development and buildslave, hide in
   production. Log errors to syslog by default.
 * Automatically enables revalidating opcode cache file timestamps in dev, but

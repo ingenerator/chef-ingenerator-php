@@ -45,9 +45,29 @@ The default recipe executes the following steps:
 |-------------|-----------------------------------------------------------------------------------------------------|
 | install_php | Installs php and any additional modules                                                             |
 | share_inis  | Configures php to share ini files between apache, cgi and cli                                       |
-| composer    | Installs and updates composer globally for all users, and creates a global writeable composer cache |
+| composer    | Installs and updates composer globally for all users                                                |
 
 To customise behaviour, include any or all of these recipes directly rather than relying on the default.
+
+Resources
+---------
+
+### `composer_binary`
+
+Used by the `composer` recipe to install and update the composer executable
+
+### `composer_dependencies`
+
+Use this resource in your project-specific recipes to run composer install against a project's composer.json. It
+requires a composer.lock to be present, and will fail if this is missing. By default this will optimise the
+autoloader and activate apcu caching, unless running in the :localdev environment. Customise this behaviour
+with node attributes for now (though will in due course be added as resource options).
+
+```ruby
+composer_dependencies path_to_project_root_dir do
+  run_as 'any-user-except-root'
+end
+```
 
 Attributes
 ----------
