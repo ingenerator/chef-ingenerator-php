@@ -18,12 +18,6 @@
 # limitations under the License.
 #
 
-# Temporary workaround for incorrect ubuntu ext_conf_dir in earlier versions of PHP cookbook
-# @todo: remove once we are able to update to php >= 1.6 reliably
-if (platform?('ubuntu') && node['platform_version'].to_f >= 12.10)
- default['php']['ext_conf_dir'] = '/etc/php5/mods-available'
-end
-
 # These module packages will be installed during the install_php recipe and should include the
 # most common defaults that we always use. Other packages can be added in your application cookbooks.
 # Note that the ingenerator-php::dev-tools recipe installs the xdebug package separately

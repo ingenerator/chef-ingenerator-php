@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING] Update to php cookbook 2.2. This no longer quotes values in php.ini
+  by default : you will need to manually add quotes to the attribute values in
+  `node['php']['directives']`.
 * Use ingenerator-helpers and `node_environment` instead of chef-sugar to trigger
   provisioning of xdebug remote debugging options
 

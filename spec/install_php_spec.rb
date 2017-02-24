@@ -21,18 +21,18 @@ describe 'ingenerator-php::install_php' do
   end
 
   it "includes custom directives in the php.ini file" do
-    chef_run.node.set['php']['directives']['session.save_path'] = '/tmp/sessions'
+    chef_run.node.normal['php']['directives']['session.save_path'] = '/tmp/sessions'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to render_file('/etc/php5/php.ini').with_content(/session.save_path="\/tmp\/sessions"/)
+    expect(chef_run).to render_file('/etc/php5/php.ini').with_content(/session.save_path=\/tmp\/sessions/)
   end
 
   context "when session.save_path is provided" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['php']['directives']['session.save_path'] = '/tmp/foo/sessions'
-        node.set['php']['session_dir']['user']  = 'foo-user'
-        node.set['php']['session_dir']['group'] = 'bar-group'
+        node.normal['php']['directives']['session.save_path'] = '/tmp/foo/sessions'
+        node.normal['php']['session_dir']['user']  = 'foo-user'
+        node.normal['php']['session_dir']['group'] = 'bar-group'
       end.converge(described_recipe)
     end
 
@@ -60,8 +60,8 @@ describe 'ingenerator-php::install_php' do
   context "with optional modules in node attributes" do
       let (:chef_run) do
         ChefSpec::SoloRunner.new do |node|
-          node.set['php']['module_packages']['php-gd'] = true
-          node.set['php']['module_packages']['php-apc'] = false
+          node.normal['php']['module_packages']['php-gd'] = true
+          node.normal['php']['module_packages']['php-apc'] = false
         end.converge(described_recipe)
       end
 

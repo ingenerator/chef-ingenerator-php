@@ -6,8 +6,8 @@ describe 'ingenerator-php::dev_tools' do
   context "to install latest xdebug" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['php']['xdebug']['version'] = '2.3.3'
-        node.set['php']['ext_conf_dir']      = '/etc/php-extensions'
+        node.normal['php']['xdebug']['version'] = '2.3.3'
+        node.normal['php']['ext_conf_dir']      = '/etc/php-extensions'
       end.converge(described_recipe)
     end
 
@@ -31,8 +31,8 @@ describe 'ingenerator-php::dev_tools' do
   context "with configured CLI debugging options" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.set['php']['xdebug']['idekey'] = 'FOO'
-        node.set['php']['xdebug']['ide_server_name'] = 'foo_server'
+        node.normal['php']['xdebug']['idekey'] = 'FOO'
+        node.normal['php']['xdebug']['ide_server_name'] = 'foo_server'
       end.converge(described_recipe)
     end
 

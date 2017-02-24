@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'ingenerator-php::share_inis' do
   let (:chef_run) do
     ChefSpec::SoloRunner.new do |node|
-      node.set['php']['share_env_inis']['/etc/php5/cgi/php.ini'] = false
-      node.set['php']['share_env_inis']['/etc/php5/apache2/php.ini'] = true
+      node.normal['php']['share_env_inis']['/etc/php5/cgi/php.ini'] = false
+      node.normal['php']['share_env_inis']['/etc/php5/apache2/php.ini'] = true
     end.converge(described_recipe)
   end
 

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe 'ingenerator-php::default' do
-  let (:chef_run) { ChefSpec::SoloRunner.new.converge 'ingenerator-php::default' }
+  let (:chef_runner) { ChefSpec::SoloRunner.new }
+  let (:chef_run)    { chef_runner.converge 'ingenerator-php::default' }
 
   it 'should run the install_php recipe' do
     expect(chef_run).to include_recipe 'ingenerator-php::install_php'
@@ -20,13 +21,8 @@ describe 'ingenerator-php::default' do
   end
 
   context 'with node[project][install_dev_tools] set' do
-    let (:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
-        node.set['project']['install_dev_tools'] = true
-      end.converge(described_recipe)
-    end
-
     it "should run the dev_tools recipe" do
+      chef_runner.node.normal['project']['install_dev_tools'] = true
       expect(chef_run).to include_recipe 'ingenerator-php::dev_tools'
     end
   end
