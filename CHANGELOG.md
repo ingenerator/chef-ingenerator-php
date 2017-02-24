@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Change to defining individual default directives / attributes instead of as a
+  complete hash - this prevents the defaults here from splatting any that are
+  defined in other cookbooks earlier in the run. This is potentially breaking,
+  but only in that the old behaviour was buggy and wrong and doesn't seem to have
+  bitten us yet.
 * [BREAKING] Update to php cookbook 2.2. This no longer quotes values in php.ini
   by default : you will need to manually add quotes to the attribute values in
   `node['php']['directives']`.
