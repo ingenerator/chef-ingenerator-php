@@ -8,15 +8,27 @@ default['php']['module_packages']['php5-curl'] = true
 default['php']['directives']['allow_call_time_pass_reference'] = 0
 default['php']['directives']['disable_functions'] = ''
 default['php']['directives']['enable_dl'] = 0
-default['php']['directives']['error_reporting'] = 'E_ALL'
 default['php']['directives']['expose_php'] = 0
-default['php']['directives']['html_errors'] = 1
 default['php']['directives']['mail.add_x_header'] = 0
 default['php']['directives']['memory_limit'] = '256M'
 default['php']['directives']['post_max_size'] = '30M'
 default['php']['directives']['serialize_precision'] = 100
 default['php']['directives']['upload_max_filesize'] = '30M'
 default['php']['directives']['variables_order'] = 'EGPCS'
+
+# Error handling / reporting
+default['php']['directives']['error_reporting'] = 'E_ALL'
+default['php']['directives']['html_errors'] = 0
+default['php']['directives']['log_errors'] = 1
+default['php']['directives']['error_log'] = 'syslog'
+
+if node.is_environment?(:localdev, :buildslave)
+  default['php']['directives']['display_errors'] = 1
+  default['php']['directives']['display_startup_errors'] = 1
+else
+  default['php']['directives']['display_errors'] = 0
+  default['php']['directives']['display_startup_errors'] = 0
+end
 
 # Namespaced core
 default['php']['directives']['date.timezone'] = 'Europe/London'

@@ -16,6 +16,11 @@ describe 'ingenerator-php::default_attributes' do
       expect(default_php_directive('opcache.validate_timestamps')).to be(1)
       expect(default_php_directive('opcache.revalidate_freq')).to be(0)
     end
+
+    it 'configures errors to be displayed' do
+      expect(default_php_directive('display_errors')).to be(1)
+      expect(default_php_directive('display_startup_errors')).to be(1)
+    end
   end
 
   context 'in :buildslave' do
@@ -26,6 +31,11 @@ describe 'ingenerator-php::default_attributes' do
       expect(default_php_directive('opcache.revalidate_freq')).to be(:not_present)
     end
 
+    it 'configures errors to be displayed' do
+      expect(default_php_directive('display_errors')).to be(1)
+      expect(default_php_directive('display_startup_errors')).to be(1)
+    end
+
   end
 
   context 'outside localdev or buildslave' do
@@ -34,6 +44,11 @@ describe 'ingenerator-php::default_attributes' do
     it 'never revalidates opcache timestamps' do
       expect(default_php_directive('opcache.validate_timestamps')).to be(0)
       expect(default_php_directive('opcache.revalidate_freq')).to be(:not_present)
+    end
+
+    it 'configures errors not to be displayed' do
+      expect(default_php_directive('display_errors')).to be(0)
+      expect(default_php_directive('display_startup_errors')).to be(0)
     end
   end
 

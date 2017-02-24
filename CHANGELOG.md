@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING] Always display errors in development and buildslave, hide in
+  production. Log errors to syslog by default.
 * Automatically enables revalidating opcode cache file timestamps in dev, but
   never revalidates in production. Removes apc file-caching options.
 * Change to defining individual default directives / attributes instead of as a
