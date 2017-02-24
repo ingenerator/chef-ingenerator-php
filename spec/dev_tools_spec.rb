@@ -3,10 +3,6 @@ require 'spec_helper'
 describe 'ingenerator-php::dev_tools' do
   let (:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
-  it 'should run the chef_sugar recipe' do
-    expect(chef_run).to include_recipe 'chef-sugar::default'
-  end
-
   context "to install latest xdebug" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
@@ -16,7 +12,7 @@ describe 'ingenerator-php::dev_tools' do
     end
 
     it 'runs a bash script to install expected version' do
-      expect(chef_run).to run_bash('install latest xdebug').with( 
+      expect(chef_run).to run_bash('install latest xdebug').with(
         environment: { 'XDEBUG_TARGET_VER' => '2.3.3' }
       )
     end
@@ -55,23 +51,23 @@ describe 'ingenerator-php::dev_tools' do
       expect(chef_run).to render_file('/usr/local/bin/xdebug').with_content(/^export PHP_IDE_CONFIG="serverName=foo_server"$/m)
     end
   end
-  
+
   context "with default CLI debugging options" do
     it "sets the xdebug idekey to PHPSTORM" do
       expect(chef_run).to render_file('/usr/local/bin/xdebug').with_content(/^export XDEBUG_CONFIG="idekey=PHPSTORM"$/m)
     end
-    
+
     it "sets the xdebug server name to the hostname" do
       hostname = chef_run.node['hostname']
       pattern = Regexp.new('^export PHP_IDE_CONFIG="serverName='+Regexp.escape(hostname)+'"$', Regexp::MULTILINE)
       expect(chef_run).to render_file('/usr/local/bin/xdebug').with_content(pattern)
     end
-    
+
   end
 
-  context "when running outside vagrant" do
+  context "when running outside the :localdev environment" do
     before do
-	  expect(Chef::Sugar::Vagrant).to receive(:vagrant?).and_return(false)
+	    allow_any_instance_of(Chef::Recipe).to receive(:node_environment).and_return(:buildslave)
     end
 
 	it "does not initialise any xdebug directives" do
@@ -81,9 +77,9 @@ describe 'ingenerator-php::dev_tools' do
 	end
   end
 
-  context "when running under vagrant" do
+  context "when running in the :localdev environment" do
     before do
-      expect(Chef::Sugar::Vagrant).to receive(:vagrant?).and_return(true)
+      allow_any_instance_of(Chef::Recipe).to receive(:node_environment).and_return(:localdev)
     end
 
     it "initialises xdebug to support remote debugging on ingenerator vagrant box" do

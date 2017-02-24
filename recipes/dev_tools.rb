@@ -20,8 +20,7 @@
 # limitations under the License.
 #
 
-include_recipe 'chef-sugar::default'
-if vagrant?
+if is_environment?(:localdev)
   node.default['php']['directives']['xdebug.remote_enable'] = 1
   # assign default vagrant host IP for our vagrant IP range
   node.default['php']['directives']['xdebug.remote_host']   = '10.87.23.1'

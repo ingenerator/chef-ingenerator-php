@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Use ingenerator-helpers and `node_environment` instead of chef-sugar to trigger
+  provisioning of xdebug remote debugging options
+
 
 ## 0.1.0 (2017-02-23)
 
