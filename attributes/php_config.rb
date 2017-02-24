@@ -24,13 +24,18 @@ default['php']['directives']['session.bug_compat_warn'] = 1
 default['php']['directives']['session.gc_max_lifetime'] = 3600
 default['php']['directives']['session.save_path'] = '/var/lib/php/session'
 
-# Modules
-default['php']['directives']['apc.canonicalize'] = 0
-default['php']['directives']['apc.mmap_files_mask'] = '/tmp/apc.94MX1m'
-default['php']['directives']['apc.num_files_hint'] = 7500
+# Opcode caching
+if node.is_environment?(:localdev)
+  default['php']['directives']['opcache.validate_timestamps'] = 1
+  default['php']['directives']['opcache.revalidate_freq'] = 0
+else
+  default['php']['directives']['opcache.validate_timestamps'] = 0
+end
+default['php']['directives']['opcache.memory_consumption'] = '128M'
+default['php']['directives']['opcache.max_accelerated_files'] = 7963
+
+# APC caching (for user caching, not opcodes)
 default['php']['directives']['apc.shm_size'] = '256M'
-default['php']['directives']['apc.stat'] = 0
-default['php']['directives']['apc.ttl'] = 7200
 default['php']['directives']['apc.user_ttl'] = 7200
 
 default['php']['directives']['pdo_mysql.default_socket'] = '/var/run/mysqld/mysqld.sock'

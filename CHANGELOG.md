@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Automatically enables revalidating opcode cache file timestamps in dev, but
+  never revalidates in production. Removes apc file-caching options.
 * Change to defining individual default directives / attributes instead of as a
   complete hash - this prevents the defaults here from splatting any that are
   defined in other cookbooks earlier in the run. This is potentially breaking,
