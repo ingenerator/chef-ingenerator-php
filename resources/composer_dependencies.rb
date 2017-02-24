@@ -32,6 +32,7 @@ action :install do
     environment({
       'COMPOSER_CACHE_DIR' => cache_dir
       })
+    live_stream true
   end
 
 end
