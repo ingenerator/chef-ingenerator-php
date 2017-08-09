@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 0.x versions may be breaking, per the semver standard.
 
 ## Unreleased
+* [POTENTIALLY BREAKING] update to version 4.5 of the php cookbook - primarily
+  internal changes on our supported platforms.
 * [BUGFIX] don't modify node attribute string in composer resource (causes frozen
   string error in chef 13).
 * Update build dependencies and build against Chef 12 and Chef 13

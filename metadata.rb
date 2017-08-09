@@ -14,4 +14,4 @@ version '1.0.0'
 end
 
 depends 'ingenerator-helpers', '~> 1.0'
-depends 'php', '~> 2.2'
+depends 'php', '~> 4.5'
