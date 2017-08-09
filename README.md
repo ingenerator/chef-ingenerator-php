@@ -1,12 +1,12 @@
 inGenerator Standard PHP cookbook
 =================================
-[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=1.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
+[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=2.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
 
 `ingenerator-php` provides standard PHP configuration and related tooling for our applications using Chef.
 
 Requirements
 ------------
-- Chef 12.13 or higher
+- Chef 12.18 or higher
 - **Ruby 2.3 or higher**
 
 Installation
@@ -14,7 +14,8 @@ Installation
 We recommend adding to your `Berksfile` and using [Berkshelf](http://berkshelf.com/):
 
 ```ruby
-cookbook 'ingenerator-php', git: 'git://github.com/ingenerator/chef-ingenerator-php', branch: 'master'
+source 'https://chef-supermarket.ingenerator.com'
+cookbook 'ingenerator-php', '~>2.0'
 ```
 
 Have your main project cookbook *depend* on ingenerator-php by editing the `metadata.rb` for your cookbook.

@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 2.0.0 (2017-08-09)
+
+* [BUGFIX] Set :localdev xdebug configuration at attribute rather than recipe
+  stage so that it is present in time to be rendered in the php.ini config file
+* Move xdebug attributes for the CLI xdebug wrapper script to attributes instead
+  of recipe level
+* [POTENTIALLY BREAKING] update to version 4.5 of the php cookbook - primarily
+  internal changes on our supported platforms.
+* [BUGFIX] don't modify node attribute string in composer resource (causes frozen
+  string error in chef 13).
+* Update build dependencies and build against Chef 12 and Chef 13
+
 ## 1.0.0 (2017-02-24)
 
 * Add `composer_dependencies` resource to provision dependencies, by default
