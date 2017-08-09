@@ -44,7 +44,7 @@ action_class do
   end
 
   def install_command
-    cmd = node['composer']['binary_path']
+    cmd = node['composer']['binary_path'].dup
     cmd << ' install'
     cmd << ' --no-interaction'
     cmd << ' --prefer-dist'
