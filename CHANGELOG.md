@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 0.x versions may be breaking, per the semver standard.
 
 ## Unreleased
+* Move xdebug attributes for the CLI xdebug wrapper script to attributes instead
+  of recipe level
 * [POTENTIALLY BREAKING] update to version 4.5 of the php cookbook - primarily
   internal changes on our supported platforms.
 * [BUGFIX] don't modify node attribute string in composer resource (causes frozen
