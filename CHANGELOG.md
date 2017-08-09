@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Exclude unnecessary build-time files and dependencies from the vendored cookbook
+
 ## 2.0.0 (2017-08-09)
 
 * [BUGFIX] Set :localdev xdebug configuration at attribute rather than recipe
