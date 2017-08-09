@@ -67,7 +67,7 @@ describe 'ingenerator-php::dev_tools' do
 
   context "when running outside the :localdev environment" do
     before do
-	    allow_any_instance_of(Chef::Recipe).to receive(:node_environment).and_return(:buildslave)
+	    allow_any_instance_of(Chef::Node).to receive(:node_environment).and_return(:buildslave)
     end
 
 	it "does not initialise any xdebug directives" do
@@ -79,7 +79,7 @@ describe 'ingenerator-php::dev_tools' do
 
   context "when running in the :localdev environment" do
     before do
-      allow_any_instance_of(Chef::Recipe).to receive(:node_environment).and_return(:localdev)
+      allow_any_instance_of(Chef::Node).to receive(:node_environment).and_return(:localdev)
     end
 
     it "initialises xdebug to support remote debugging on ingenerator vagrant box" do

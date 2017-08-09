@@ -20,13 +20,6 @@
 # limitations under the License.
 #
 
-if is_environment?(:localdev)
-  node.default['php']['directives']['xdebug.remote_enable'] = 1
-  # assign default vagrant host IP for our vagrant IP range
-  node.default['php']['directives']['xdebug.remote_host']   = '10.87.23.1'
-  node.default['php']['directives']['xdebug.remote_log']    = '/tmp/xdebug_remote.log'
-end
-
 # Install the latest version of xdebug if required
 bash 'install latest xdebug' do
   code <<-EOH
