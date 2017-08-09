@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 0.x versions may be breaking, per the semver standard.
 
 ## Unreleased
+* Update build dependencies and build against Chef 12 and Chef 13
 
 ## 1.0.0 (2017-02-24)
 
