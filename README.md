@@ -64,6 +64,11 @@ requires a composer.lock to be present, and will fail if this is missing. By def
 autoloader and activate apcu caching, unless running in the :localdev environment. Customise this behaviour
 with node attributes for now (though will in due course be added as resource options).
 
+By default this will run `composer check-platform-reqs` before installing dependencies. You
+can opt out of this by setting the `check_platform_reqs` resource attribute to false - but 
+it would be better to fix whatever it is about your packages / php environment that is
+causing the composer check to fail.
+
 ```ruby
 composer_dependencies path_to_project_root_dir do
   run_as 'any-user-except-root'

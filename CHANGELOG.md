@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 2.1.0 (2018-08-24)
+
+* Bump build-time dependencies
 * Run composer check-platform-reqs before installing dependencies by default - you 
   can disable this by setting the resource option if absolutely necessary but it 
   would be better to fix either the packages you're installing or the runtime 
