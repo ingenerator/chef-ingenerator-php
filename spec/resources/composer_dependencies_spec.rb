@@ -6,9 +6,10 @@ describe_resource 'resources::composer_dependencies' do
   let (:lock_exists?) { true }
   let (:test_project_dir) { '/project/current' }
   let (:test_run_as) { 'www-data' }
+  let (:test_check_requirements) { nil }
 
   let (:node_attributes) do
-    { test: { project_dir: test_project_dir, run_as: test_run_as } }
+    { test: { project_dir: test_project_dir, run_as: test_run_as, check_requirements: test_check_requirements } }
   end
 
   let (:node_environment) { :anything }
@@ -57,6 +58,14 @@ describe_resource 'resources::composer_dependencies' do
         expect(chef_run).to run_composer(environment: { 'COMPOSER_CACHE_DIR' => '/var/composer/cache' })
       end
 
+      it 'checks composer platform requirements in the project directory' do
+        expect(chef_run).to run_composer_check(cwd: '/project/current')
+      end
+
+      it 'checks composer platform requirements as the specified user' do
+        expect(chef_run).to run_composer_check(user: 'www-data')
+      end
+
       context 'outside localdev' do
         let (:node_environment) { :anything }
         it 'runs composer install and optimises the autoloader' do
@@ -70,6 +79,18 @@ describe_resource 'resources::composer_dependencies' do
         it 'does not optimise the autoloader or use apcu caching' do
           expect(chef_run).to run_composer(command: '/usr/local/bin/composer install --no-interaction --prefer-dist')
         end
+      end
+    end
+
+    context 'with check-platform-reqs disabled' do
+      let (:test_check_requirements) { false }
+
+      it 'does not run check-platform-reqs' do
+        expect(chef_run).not_to run_composer_check(user: 'www-data')
+      end
+
+      it 'installs dependencies' do
+        expect(chef_run).to run_composer(cwd: '/project/current')
       end
     end
 
@@ -97,6 +118,10 @@ describe_resource 'resources::composer_dependencies' do
 
     def run_composer(match)
       run_execute('install packages').with(match)
+    end
+
+    def run_composer_check(match)
+      run_execute('check composer platform requirements').with(match)
     end
   end
 end
