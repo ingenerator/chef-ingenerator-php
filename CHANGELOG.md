@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Run composer check-platform-reqs before installing dependencies by default - you 
+  can disable this by setting the resource option if absolutely necessary but it 
+  would be better to fix either the packages you're installing or the runtime 
+  environment.
+
 ## 2.0.1 (2017-08-10)
 
 * Exclude unnecessary build-time files and dependencies from the vendored cookbook

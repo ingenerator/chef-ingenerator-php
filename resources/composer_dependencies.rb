@@ -10,6 +10,9 @@ resource_name :composer_dependencies
 # Path where the project composer.json lives
 property :project_dir, String, name_property: true, required: true
 
+# Whether to check composer's platform requirements before attempting to install
+property :check_platform_reqs, [TrueClass, FalseClass], default: true
+
 # This must be a non-root user for security reasons
 property :run_as, String, required: true
 
@@ -23,6 +26,15 @@ action :install do
     recursive true
     user      'root'
     mode 0777
+  end
+
+  if new_resource.check_platform_reqs
+    execute 'check composer platform requirements' do
+      command     check_requirements_command
+      cwd         new_resource.project_dir
+      user        new_resource.run_as
+      live_stream true
+    end
   end
 
   execute 'install packages' do
@@ -41,6 +53,13 @@ action_class do
 
   def cache_dir
     node['composer']['global_cache_dir']
+  end
+
+  def check_requirements_command
+      cmd = node['composer']['binary_path'].dup
+      cmd << ' check-platform-reqs'
+      cmd << ' --no-interaction'
+      cmd
   end
 
   def install_command
