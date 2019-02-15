@@ -6,14 +6,14 @@ describe 'ingenerator-php::dev_tools' do
   context "to install latest xdebug" do
     let (:chef_run) do
       ChefSpec::SoloRunner.new do |node|
-        node.normal['php']['xdebug']['version'] = '2.3.3'
+        node.normal['php']['xdebug']['version'] = '2.6.1'
         node.normal['php']['ext_conf_dir']      = '/etc/php-extensions'
       end.converge(described_recipe)
     end
 
     it 'runs a bash script to install expected version' do
       expect(chef_run).to run_bash('install latest xdebug').with(
-        environment: { 'XDEBUG_TARGET_VER' => '2.3.3' }
+        environment: { 'XDEBUG_TARGET_VER' => '2.6.1' }
       )
     end
 
@@ -24,7 +24,7 @@ describe 'ingenerator-php::dev_tools' do
     end
 
     it 'enables the xdebug module' do
-      expect(chef_run).to run_execute('/usr/sbin/php5enmod xdebug')
+      expect(chef_run).to run_execute('/usr/sbin/phpenmod xdebug')
     end
   end
 

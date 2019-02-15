@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* Update xdebug target version to 2.6.1 and use phpenmod to install (not php5enmod)
 * [BREAKING] Update default module packages to their php7 versions and throw if a 
   project requests any php5 module packages
 * [BREAKING] Update share_env_inis paths to /etc/php/7.2/... per ubuntu package
