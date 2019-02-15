@@ -8,7 +8,7 @@
 resource_name :composer_binary
 
 # Path to install the
-property :path, name_property: true, required: true
+property :path, name_property: true
 
 default_action :install
 
