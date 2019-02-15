@@ -1,8 +1,9 @@
 # These module packages will be installed during the install_php recipe and should include the
 # most common defaults that we always use. Other packages can be added in your application cookbooks.
 # Note that the ingenerator-php::dev-tools recipe installs the xdebug package separately
-default['php']['module_packages']['php-apc'] = true
-default['php']['module_packages']['php5-curl'] = true
+default['php']['module_packages']['php-apcu'] = true
+default['php']['module_packages']['php-apcu-bc'] = true
+default['php']['module_packages']['php7.2-curl'] = true
 
 # Core directives
 default['php']['directives']['allow_call_time_pass_reference'] = 0
