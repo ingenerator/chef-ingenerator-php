@@ -4,6 +4,7 @@
 default['php']['module_packages']['php-apcu'] = true
 default['php']['module_packages']['php-apcu-bc'] = true
 default['php']['module_packages']['php7.2-curl'] = true
+default['php']['module_packages']['php7.2-mbstring'] = true
 
 # Core directives
 default['php']['directives']['allow_call_time_pass_reference'] = 0

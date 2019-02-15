@@ -50,7 +50,7 @@ describe 'ingenerator-php::install_php' do
     end
   end
 
-  %w(php-apcu php-apcu-bc php7.2-curl).each do | pkg |
+  %w(php-apcu php-apcu-bc php7.2-curl php7.2-mbstring).each do | pkg |
     it "installs the #{pkg} module from package" do
       expect(chef_run).to install_package pkg
     end
