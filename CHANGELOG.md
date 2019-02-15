@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING] update to the latest php cookbook (drops mysql dep, some pear related
+  recipes) and apparently adds initial 18.04 support 
+
 ## 2.1.0 (2018-08-24)
 
 * Bump build-time dependencies
