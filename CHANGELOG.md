@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING] drop chef12 support
 * [BREAKING] update to the latest php cookbook (drops mysql dep, some pear related
   recipes) and apparently adds initial 18.04 support 
 

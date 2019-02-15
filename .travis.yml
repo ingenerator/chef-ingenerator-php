@@ -6,7 +6,6 @@ rvm:
 sudo:     false
 gemfile:
   - Gemfile
-  - gemfiles/chef-12/Gemfile
 script:
   # Skip FC061 to allow x.y.z-pre etc versions during development
   - bundle exec foodcritic . -t ~FC061
