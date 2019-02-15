@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+* [BREAKING] Update share_env_inis paths to /etc/php/7.2/... per ubuntu package
+  locations - will throw if the project still specifies any at /etc/php5
+* [BREAKING] Expect to install php7.2
 * [BREAKING] drop chef12 support
 * [BREAKING] update to the latest php cookbook (drops mysql dep, some pear related
   recipes) and apparently adds initial 18.04 support 

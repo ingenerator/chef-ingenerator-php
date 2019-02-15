@@ -22,6 +22,10 @@
 #
 
 node['php']['share_env_inis'].each do |ini_path, should_share|
+  if /php5/.match(ini_path)
+    raise ArgumentError.new("Your project has an invalid legacy node['php']['share_env_inis']['#{ini_path}'] - it should be /etc/php/7.2/...")
+  end
+
   next unless should_share
   ini_path = ini_path.dup
 

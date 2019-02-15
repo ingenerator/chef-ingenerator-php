@@ -16,15 +16,15 @@ describe 'ingenerator-php::install_php' do
     expect(chef_run).not_to ChefSpec::Matchers::ResourceMatcher.new(:php_pear_channel, :update, 'pecl.php.net')
   end
 
-  it "writes a common php.ini in /etc/php5/php.ini" do
-    expect(chef_run).to render_file('/etc/php5/php.ini').with_content(/About php.ini/)
+  it "writes a common php.ini in /etc/php/7.2/php.ini" do
+    expect(chef_run).to render_file('/etc/php/7.2/php.ini').with_content(/About php.ini/)
   end
 
   it "includes custom directives in the php.ini file" do
     chef_run.node.normal['php']['directives']['session.save_path'] = '/tmp/sessions'
     chef_run.converge(described_recipe)
 
-    expect(chef_run).to render_file('/etc/php5/php.ini').with_content(/session.save_path=\/tmp\/sessions/)
+    expect(chef_run).to render_file('/etc/php/7.2/php.ini').with_content(/session.save_path=\/tmp\/sessions/)
   end
 
   context "when session.save_path is provided" do

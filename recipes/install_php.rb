@@ -22,7 +22,7 @@
 
 # Chef's community cookbook only manages one php.ini file - force use of a common file
 # which can be shared between cgi, cli and other environments with symlinks
-node.override['php']['conf_dir'] = '/etc/php5'
+node.override['php']['conf_dir'] = '/etc/php/7.2'
 
 include_recipe "php::package"
 
