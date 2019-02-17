@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 3.0.0 (2019-02-17)
+
 * Install php7.2-mbstring by default (no longer included in standard php modules 
   with 7.2/apache on ubuntu)
 * Update xdebug target version to 2.6.1 and use phpenmod to install (not php5enmod)
