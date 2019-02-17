@@ -7,14 +7,12 @@ default['php']['module_packages']['php7.2-curl'] = true
 default['php']['module_packages']['php7.2-mbstring'] = true
 
 # Core directives
-default['php']['directives']['allow_call_time_pass_reference'] = 0
 default['php']['directives']['disable_functions'] = ''
 default['php']['directives']['enable_dl'] = 0
 default['php']['directives']['expose_php'] = 0
 default['php']['directives']['mail.add_x_header'] = 0
 default['php']['directives']['memory_limit'] = '256M'
 default['php']['directives']['post_max_size'] = '30M'
-default['php']['directives']['serialize_precision'] = 100
 default['php']['directives']['upload_max_filesize'] = '30M'
 default['php']['directives']['variables_order'] = 'EGPCS'
 
@@ -34,7 +32,6 @@ end
 
 # Namespaced core
 default['php']['directives']['date.timezone'] = 'Europe/London'
-default['php']['directives']['session.bug_compat_warn'] = 1
 default['php']['directives']['session.gc_max_lifetime'] = 3600
 default['php']['directives']['session.save_path'] = '/var/lib/php/session'
 
