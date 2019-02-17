@@ -1,13 +1,13 @@
 inGenerator Standard PHP cookbook
 =================================
-[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=2.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
+[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=3.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
 
 `ingenerator-php` provides standard PHP configuration and related tooling for our applications using Chef.
 
 Requirements
 ------------
-- Chef 12.18 or higher
-- **Ruby 2.3 or higher**
+- Chef 13.12 or higher
+- **Ruby 2.4 or higher**
 
 Installation
 ------------
@@ -98,7 +98,7 @@ License & Authors
 - Author:: Andrew Coulton (andrew@ingenerator.com)
 
 ```text
-Copyright 2012-2013, inGenerator Ltd
+Copyright 2012-2019, inGenerator Ltd
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

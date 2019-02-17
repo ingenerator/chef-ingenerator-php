@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 3.0.0 (2019-02-17)
+
+* Drop ini directives for `allow_call_time_pass_reference` and `session.bug_compat_warn`
+  (both removed) and `serialize_precision` (default of -1 uses improved algorithm in 
+  php7)
+* Install php7.2-mbstring by default (no longer included in standard php modules 
+  with 7.2/apache on ubuntu)
+* Update xdebug target version to 2.6.1 and use phpenmod to install (not php5enmod)
+* [BREAKING] Update default module packages to their php7 versions and throw if a 
+  project requests any php5 module packages
+* [BREAKING] Update share_env_inis paths to /etc/php/7.2/... per ubuntu package
+  locations - will throw if the project still specifies any at /etc/php5
+* [BREAKING] Expect to install php7.2
+* [BREAKING] drop chef12 support
+* [BREAKING] update to the latest php cookbook (drops mysql dep, some pear related
+  recipes) and apparently adds initial 18.04 support 
+
 ## 2.1.0 (2018-08-24)
 
 * Bump build-time dependencies

@@ -22,12 +22,11 @@
 
 # Chef's community cookbook only manages one php.ini file - force use of a common file
 # which can be shared between cgi, cli and other environments with symlinks
-node.override['php']['conf_dir'] = '/etc/php5'
+node.override['php']['conf_dir'] = '/etc/php/7.2'
 
 include_recipe "php::package"
 
-node['php']['module_packages'].each do |package_name, do_install|
-  next unless do_install
+Ingenerator::Php::PhpModules.module_packages_to_install(node).each do | package_name |
   package package_name
 end
 

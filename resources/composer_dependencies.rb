@@ -8,7 +8,7 @@
 resource_name :composer_dependencies
 
 # Path where the project composer.json lives
-property :project_dir, String, name_property: true, required: true
+property :project_dir, String, name_property: true
 
 # Whether to check composer's platform requirements before attempting to install
 property :check_platform_reqs, [TrueClass, FalseClass], default: true

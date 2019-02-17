@@ -44,7 +44,7 @@ file "#{node['php']['ext_conf_dir']}/xdebug.ini" do
   EOH
 end
 
-execute '/usr/sbin/php5enmod xdebug'
+execute '/usr/sbin/phpenmod xdebug'
 
 # Install the xdebug CLI wrapper script
 template '/usr/local/bin/xdebug' do
