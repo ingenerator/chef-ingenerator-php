@@ -1,10 +1,10 @@
 # These module packages will be installed during the install_php recipe and should include the
 # most common defaults that we always use. Other packages can be added in your application cookbooks.
 # Note that the ingenerator-php::dev-tools recipe installs the xdebug package separately
-default['php']['module_packages']['php-apcu'] = true
-default['php']['module_packages']['php-apcu-bc'] = true
-default['php']['module_packages']['php7.2-curl'] = true
-default['php']['module_packages']['php7.2-mbstring'] = true
+default['php']['module_packages']['php7.4-apcu'] = true
+default['php']['module_packages']['php7.4-apcu-bc'] = true
+default['php']['module_packages']['php7.4-curl'] = true
+default['php']['module_packages']['php7.4-mbstring'] = true
 
 # Core directives
 default['php']['directives']['disable_functions'] = ''
@@ -57,5 +57,5 @@ default['php']['session_dir']['group'] = 'www-data'
 
 # List of php.ini files that should be removed by the share_inis recipe and replaced with links
 # to the standard php.ini location
-default['php']['share_env_inis']['/etc/php/7.2/cli/php.ini'] = true
-default['php']['share_env_inis']['/etc/php/7.2/cgi/php.ini'] = true
+default['php']['share_env_inis']['/etc/php/7.4/cli/php.ini'] = true
+default['php']['share_env_inis']['/etc/php/7.4/cgi/php.ini'] = true
