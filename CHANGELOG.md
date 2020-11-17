@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/). Note that
 
 ## Unreleased
 
+## 4.0.0 (2020-11-17)
+
+* (Hackily) switch to PHP7.4 on Ubuntu 18.04
+  This is almost certainly the last release of this cookbook, and is just tiding us over
+  the last few projects migrating to docker / k8s. As well as the cookbook changes here 
+  you will need to update application provisioning, in particular to get apache to install
+  `libapache2-mod-php7.4` from the ondrej PPA instead of the default `mod_php`.
+
 ## 3.0.0 (2019-02-17)
 
 * Drop ini directives for `allow_call_time_pass_reference` and `session.bug_compat_warn`

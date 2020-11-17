@@ -1,6 +1,6 @@
 inGenerator Standard PHP cookbook
 =================================
-[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=3.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
+[![Build Status](https://travis-ci.org/ingenerator/chef-ingenerator-php.png?branch=4.x)](https://travis-ci.org/ingenerator/chef-ingenerator-php)
 
 `ingenerator-php` provides standard PHP configuration and related tooling for our applications using Chef.
 
