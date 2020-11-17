@@ -6,6 +6,8 @@ rvm:
 sudo:     false
 gemfile:
   - Gemfile
+before_install:
+  - gem install bundler
 script:
   # Skip FC061 to allow x.y.z-pre etc versions during development
   - bundle exec foodcritic . -t ~FC061
