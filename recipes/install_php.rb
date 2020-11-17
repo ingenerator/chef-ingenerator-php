@@ -22,7 +22,16 @@
 
 # Chef's community cookbook only manages one php.ini file - force use of a common file
 # which can be shared between cgi, cli and other environments with symlinks
-node.override['php']['conf_dir'] = '/etc/php/7.2'
+node.override['php']['conf_dir']     = '/etc/php/7.4'
+node.override['php']['ext_conf_dir'] = '/etc/php/7.4/mods-available'
+node.override['php']['packages']     = %w(php7.4-cgi php7.4 php7.4-dev php7.4-cli php-pear)
+
+apt_repository 'ondrej-ubuntu-php-bionic' do
+  uri        'http://ppa.launchpad.net/ondrej/php/ubuntu'
+  keyserver  'keyserver.ubuntu.com'
+  key        '14AA40EC0831756756D7F66C4F4EA0AAE5267A6C'
+  components ['main']
+end
 
 include_recipe "php::package"
 
